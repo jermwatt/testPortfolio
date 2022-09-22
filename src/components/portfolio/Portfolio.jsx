@@ -1,29 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./portfolio.scss";
 import PortfolioListItem from "./PortfolioListItem";
+import {
+  featuredPortfolio,
+  webPortfolio,
+  mobilePortfolio,
+  designPortfolio,
+  contentPortfolio,
+} from "../../data/data";
+import { BrandingWatermark } from "@material-ui/icons";
+
+const list = [
+  {
+    id: "featured",
+    title: "Featured",
+  },
+  {
+    id: "mobile",
+    title: "Mobile App",
+  },
+  {
+    id: "design",
+    title: "Design",
+  },
+  {
+    id: "branding",
+    title: "Branding",
+  },
+];
 
 export default function Portfolio() {
+  const [data, setData] = useState([]);
   const [active, setActive] = useState("featured");
 
-  const list = [
-    {
-      id: "featured",
-      title: "Featured",
-    },
-    {
-      id: "mobile",
-      title: "Mobile App",
-    },
-    {
-      id: "design",
-      title: "Design",
-    },
-    {
-      id: "branding",
-      title: "Branding",
-    },
-  ];
+  useEffect(() => {
+    switch (active) {
+      case "featured":
+        setData(featuredPortfolio);
+        break;
+      case "mobile":
+        setData(mobilePortfolio);
+        break;
+      case "design":
+        setData(designPortfolio);
+        break;
+      case "web":
+        setData(webPortfolio);
+        break;
+      default:
+        setData(featuredPortfolio);
+    }
+  }, [active]);
 
   return (
     <div className="portfolio" id="portfolio">
@@ -40,30 +68,12 @@ export default function Portfolio() {
         </ul>
       </div>
       <div className="bottomContainer">
-        <div className="item">
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pecm.co.uk%2Fdirectory%2Fwp-content%2Fuploads%2F2015%2F07%2Fplastic-tubes.jpg&f=1&nofb=1" />
-          <h3> item title </h3>
-        </div>
-        <div className="item">
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pecm.co.uk%2Fdirectory%2Fwp-content%2Fuploads%2F2015%2F07%2Fplastic-tubes.jpg&f=1&nofb=1" />
-          <h3> item title </h3>
-        </div>
-        <div className="item">
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pecm.co.uk%2Fdirectory%2Fwp-content%2Fuploads%2F2015%2F07%2Fplastic-tubes.jpg&f=1&nofb=1" />
-          <h3> item title </h3>
-        </div>
-        <div className="item">
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pecm.co.uk%2Fdirectory%2Fwp-content%2Fuploads%2F2015%2F07%2Fplastic-tubes.jpg&f=1&nofb=1" />
-          <h3> item title </h3>
-        </div>
-        <div className="item">
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pecm.co.uk%2Fdirectory%2Fwp-content%2Fuploads%2F2015%2F07%2Fplastic-tubes.jpg&f=1&nofb=1" />
-          <h3> item title </h3>
-        </div>
-        <div className="item">
-          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pecm.co.uk%2Fdirectory%2Fwp-content%2Fuploads%2F2015%2F07%2Fplastic-tubes.jpg&f=1&nofb=1" />
-          <h3> item title </h3>
-        </div>
+        {data.map((d) => (
+          <div className="item">
+            <img src={d.img} alt="" />
+            <h3> {d.title} </h3>
+          </div>
+        ))}
       </div>
     </div>
   );

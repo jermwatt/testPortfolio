@@ -1,15 +1,25 @@
 @import "../../global.scss";
 
 .portfoliolistitem {
+  display: flex;
+  height: 60%;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+
   li {
     font-size: 14px;
-    margin-right: 50px;
+    margin-right: 10px;
     padding: 0.7px;
+    height: 100%;
+    width: 100%;
+
     cursor: pointer;
     &.active {
       background-color: $mainColor;
       color: white;
-      border-radius: 10px;
+      border-radius: 20px;
     }
   }
 }
