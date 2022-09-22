@@ -7,7 +7,6 @@ import {
   webPortfolio,
   mobilePortfolio,
   designPortfolio,
-  contentPortfolio,
 } from "../../data/data";
 import { BrandingWatermark } from "@material-ui/icons";
 
